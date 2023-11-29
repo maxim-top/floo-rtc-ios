@@ -63,7 +63,11 @@ const Float64 kFramerateLimit = 30.0;
       return device;
     }
   }
-  return captureDevices[0];
+  if(captureDevices.count > 0){
+    return captureDevices[0];
+  }else{
+    return nil;
+  }
 }
 
 - (AVCaptureDeviceFormat *)selectFormatForDevice:(AVCaptureDevice *)device {

@@ -68,8 +68,9 @@
 }
 
 - (BMXErrorCode)leaveRoom{
-    [self stopPreviewWithCanvas:nil];
     if (_roomId) {
+        _bmxRtcSession = nil;
+        [self stopPreviewWithCanvas:nil];
         _userId = -1;
         _roomId = nil;
         
@@ -373,6 +374,7 @@
 - (void)onSubSwitchWithSession:(BMXRTCSession*)session room:(BMXRTCRoom*)room publisher:(long long)publisher error:(int)error reason:(NSString*)reason{
 }
 - (void)onLeaveRoomWithSession:(BMXRTCSession*)session roomId:(long long)roomId senderId:(long long)senderId error:(int)error reason:(NSString*)reason{
+    [rtcEngineListener onLeaveRoomWithInfo:@"" roomId:roomId error:(BMXErrorCode)BMXErrorCode_NoError reason:reason ];
 }
 - (void)onSubscribeWebrtcUpWithSession:(BMXRTCSession*)session senderId:(long long)senderId{
 }
